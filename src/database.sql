@@ -12,7 +12,7 @@ CREATE TABLE tasks(
 INSERT INTO tasks(title) VALUES
 ('Hacer ejercicio'),
 ('Estudiar backend'),
-('Prepar el desayuno'),
+('Preparar el desayuno'),
 ('Conectar la base de datos con la api'),
 ('Sacar el perro al parque'),
 ('Hacer el proyecto final'),

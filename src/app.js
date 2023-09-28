@@ -38,7 +38,7 @@ app.get("/tasks/:id", async (req, res) => {
   // Hacer un try catch para manejar los errores
   try {
     // Hacer la consulta a la base de datos
-    const result = await pool.query("SELECT * FROM tasks WHERE id_task = $1", [
+    const result = await pool.query("SELECT * FROM $2 WHERE id_task = $1", [
       id,
     ]);
     // Verificar si la consulta no devolvio ningun resultado
