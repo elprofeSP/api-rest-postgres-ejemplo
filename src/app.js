@@ -4,15 +4,27 @@ import { pool } from "./db.js";
 
 const app = express();
 
+// Middleware para parsear el body de la peticion
 app.use(express.json());
+// Middleware para permitir peticiones desde cualquier origen
 app.use(cors());
 
 // Obtener todas las tareas de la base de datos
 app.get("/tasks", async (req, res) => {
+  // Hacer un try catch para manejar los errores
   try {
+    // Hacer la consulta a la base de datos
     const result = await pool.query("SELECT * FROM tasks");
+    // Verificar si la consulta no devolvio ningun resultado
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "No se encontro el recurso",
+      });
+    }
+    // Si la consulta devolvio un resultado, devolverlo
     res.json(result.rows);
   } catch (error) {
+    // Si hubo un error, devolver el error
     res.status(500).json({
       message: error.message,
     });
