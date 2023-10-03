@@ -69,12 +69,14 @@ app.post("/tasks", async (req, res) => {
   }
   // Manejar el error con un try catch
   try {
-    const result = await pool.query("INSERT INTO tasks(title) VALUES($1)", [
-      title,
-    ]);
+    const result = await pool.query(
+      "INSERT INTO tasks(title) VALUES($1) RETURNING *",
+      [title]
+    );
     // Devolver una respuesta exitosa
     res.status(201).json({
       message: "Tarea creada exitosamente",
+      body: result.rows[0],
     });
   } catch (error) {
     // Si hubo un error, devolver el error
