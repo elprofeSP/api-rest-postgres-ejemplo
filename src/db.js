@@ -11,3 +11,11 @@ export const pool = new pg.Pool({
     rejectUnauthorized: true,
   },
 });
+
+// Conexion a la base de datos por la url
+// export const pool = new pg.Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: true,
+//   },
+// });
